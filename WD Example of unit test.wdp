@@ -1,0 +1,109 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : WD Example of unit test
+ major_version : 28
+ minor_version : 0
+ type : 4097
+ description : WD Example of unit test
+ subtype : 0
+project :
+ identifier : 0x0
+ internal_properties : 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
+ configurations :
+  -
+    name : WD Example of unit test
+    internal_properties : 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
+    configuration_id : 6336027591107583708
+    type : 1
+    generation_name : WD Example of unit test.exe
+    version :
+     major_version : 20
+     generation_version : 1
+     internal_generation_version : 1
+    icon_filename : .\description.ico
+    language : 2
+ elements :
+  identifier : 0x4acc5746000f6835
+  elements :
+   -
+     name : WIN_addressinput
+     identifier : 0x3e300ba044bda916
+     internal_properties : CAAAAAgAAAD9WdXJ9qMLFCOyweHGwo4+ezSG5ojNqQiGE2KStmWpvzWrUyfrFVHNjLYgmBjIsCDoaA==
+     physical_name : .\WIN_addressinput.wdw
+     type : 2
+   -
+     name : TEST_Global_procedures
+     identifier : 0x45645b5d00010aec
+     internal_properties : CAAAAAgAAADoZtDM+6AIE9yvfjK3lFkNJnv19UlZl7KqsChRknOZrwX5I9c6xgB6eaMdmxvVrSPtdQ==
+     physical_name : .\TEST_Global_procedures.wxt
+     type : 17
+   -
+     name : Global_procedures
+     identifier : 0x45645b5a0000fe2a
+     internal_properties : CAAAAAgAAADmbM7S0Y6mSRYVoMDltLtDdBVDa5nd/9j/F1+ZUMvBd4mZJ8NM9DIsL+nTLfXrlwnzcw==
+     physical_name : .\Global_procedures.wdg
+     type : 7
+   -
+     name : TEST_WIN_addressinput
+     identifier : 0x4561b49900019306
+     internal_properties : CAAAAAgAAACppZH1Mm9HaHc2VRVKKMb2n9w6Mgqi7mWysoEzgrPbbV9RjW2XoeVhEAr0zFSMdGSstA==
+     physical_name : .\TEST_WIN_addressinput.wxt
+     type : 17
+  other_elements :
+   -
+     physical_name : .\Description.gif
+  analysis : .\WD Example of unit test.ana\WD Example of unit test.wda
+  net_assemblies : []
+  uwp_api : []
+  external_components : []
+  internal_components : []
+ report_and_queries_enabled : false
+ common_generation_directory : true
+ languages :
+  - en-GB
+ wd_style_sheet : ".\\WD Input Checks.sty\r\n.\\WD Example of unit test.sty"
+ wb_style_sheet : .\WD Input Checks.wws
+ code_elements :
+  internal_properties : CAAAAAgAAAD5cdKVSygEE2jHhxPKyPgOk5yBhGnnAwW+gAJDLCpgyuPa5SI0kvQmNv5BnFpBfmJ+BFPqv59mJabyeMbLIhh8x/z7ciV10g==
+  type_code : 0
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAACmoVLMw6IVaNN+EzbCZ6RfCxh5pVzFPCZhG88znScG1z/Y/PkdJeeP3irLcbXCN5RHeNd369Fx6IvEJqGLFE9HzBcOG+6ib4SBPfY0gUSlaVKJGNF5IaHvg1Ejosjz6t2GLW9jk83MVZZ/lw==
+     code : |1+
+      // Init HF
+      HMode(hModeMulti)
+      HOpen("*")
+     type : 196608
+   -
+     code : |1-
+      
+     type : 196610
+   -
+     code : |1-
+      
+     type : 196619
+   -
+     type : 196621
+   -
+     type : 196627
+     enabled : false
+  orphans :
+   -
+     name : WD Example of unit test
+     identifier : 0x4acc5746001468d1
+     code_elements :
+      type_code : 159
+      p_codes : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+rad :
+ internal_properties : CAAAAAgAAABhIL0UXeZmxDJxY3Xy0Q==
+project_explorer :
+ explorer_type : project
+resources :
+ string_res :
+  identifier : 0x0
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAAAd98VSJfHHqE3P0QHwrwdhn7ig8dWBR6valpUTgnAMTVXiDg==

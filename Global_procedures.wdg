@@ -1,0 +1,194 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : Global_procedures
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x16991d4f0097dc0b
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  internal_properties : CAAAAAgAAAAdC5DaGsntqmfkq1J4p6eipmeEO//QiIdypV0FB6KY+wiPKnW2KoJpaKmeXvb1NGpH4KGGthHXu/V4LqeilI4jnJwO5Q==
+  type_code : 31
+  p_codes : []
+  procedures :
+   -
+     name : bZIPIncorrect
+     procedure_id : 1628364965420784651
+     type_code : 15
+     code : |1+
+      FUNCTION bZIPIncorrect(sZIP,sCountry)
+      
+      // Returns True if the zip code is incorrect
+      
+      IF Length(NoSpace(sZIP))<>5 THEN
+      	IF sCountry~="France" THEN
+      		Error("Indicate the 5 digits of your zip code.")
+      		RESULT True
+      	ELSE
+      		// Overseas
+      		IF NOT YesNo(	"The zip code seems to be incomplete."+CR+CR+...
+      						"Do you want to save the zip code?") THEN   
+      			RESULT True
+      		END
+      	END
+      END
+      
+      RESULT False
+      
+     type : 458752
+   -
+     name : bZIPCityIncorrect
+     procedure_id : 1628364965420850187
+     type_code : 15
+     code : |1+
+      FUNCTION bZIPCityIncorrect(sZIP,sCity)
+      
+      // Returns True if the correspondence between ZC and City is not found
+      HReadSeek("ZIPCODE","ZIPCODE",Complete(sZIP,5))
+      WHILE HFound()
+      	IF sCity~=ZIPCODE.CITY THEN RESULT False
+      	HReadNext("ZIPCODE","ZIPCODE")
+      END
+      
+      IF YesNo(	"The zip code "+NoSpace(sZIP)+" seems to be incorrect in relation to the city: "+NoSpace(sCity),...
+      			"Save anyway?") THEN
+      	RESULT False		
+      END
+      
+      RESULT True
+      
+     type : 458752
+   -
+     name : bIncorrect
+     procedure_id : 1628364965420915723
+     type_code : 15
+     code : |1+
+      FUNCTION bIncorrect(s,bIllegalFigures=False)
+      
+      // Checks the validity of a control
+      
+      // In input: 
+      // s = the string to check
+      // bDigitsForbidden = True if the digits are not allowed (name for instance)
+      
+      // In output: boolean signaling that the string is incorrect
+      
+      s=NoSpace(s)
+      i is int
+      
+      // Empty string?
+      IF s="" THEN RESULT True
+      
+      // Less than 2 letters?
+      IF Length(s)<2 THEN RESULT True
+      
+      // Case of forbidden digits
+      IF bIllegalFigures THEN
+      	FOR i=1 _TO_ Length(s)
+      		IF Position("0123456789", s[[i]])>0 THEN RESULT True
+      	END
+      END
+      
+      // Only figures and special characters?
+      sCHARSET is string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      bLetter is boolean
+      FOR i=1 _TO_ Length(s)
+      	IF Position(sCHARSET, Upper(s[[i]]))>0 THEN
+      		bLetter=True
+      		BREAK
+      	END
+      END
+      IF NOT bLetter THEN RESULT True
+      
+      // same letter n times?
+      FOR i=1 _TO_ Length(s)
+      	// A letter different from the 1st letter => OK
+      	IF s[[i]]<>s[[1]] THEN RESULT False
+      END
+      RESULT True // No letter differs from the 1st letter => not OK
+      
+     type : 458752
+   -
+     name : bTelInvalid
+     procedure_id : 1628364965420981259
+     type_code : 15
+     code : |1+
+      FUNCTION bTelInvalid(sPhone,sCountry)
+      
+      // Returns True if the phone number is invalid
+      
+      sTel is string = NoSpace(sPhone)
+      IF sTel<>"" THEN
+          // Delete all the punctuation characters to check the inputs
+      	sTel=Replace(sTel," ","")
+      	sTel=Replace(sTel,".","")
+      	sTel=Replace(sTel,"-","")
+      	sTel=Replace(sTel,"(","")
+      	sTel=Replace(sTel,")","")
+      	// french number?
+      	IF sCountry~="France" THEN
+      		// 01, 02, 03, 04, 05, ...
+      		IF Val(sTel[[1 TO 2]])=0 OR Val(sTel[[1 TO 2]])>6 THEN
+      			IF NOT YesNo(	"The French phone numbers start with 01, 02, 03, 04, 05 or 06"+CR+CR+...
+      							"Do you still want to save the number entered?") THEN  
+      				RESULT True
+      			END
+      		END
+      		// 10 digits
+      		IF Length(sTel)<>10 THEN
+      			IF NOT YesNo(	"The French phone numbers include 10 digits."+CR+CR+...
+      							"Do you still want to save the number entered?") THEN   
+      				RESULT True
+      			END
+      		END
+      	ELSE
+      		// 00 for overseas
+      		IF NOT sTel[[1 TO 2]]="00" THEN
+      			Error("For a foreign country, your phone number must be prefixed by 00.")
+      			RESULT True
+      		END
+      		// At least 5 digits
+          	IF Length(sTel)<5 THEN
+      			IF NOT YesNo(	"The phone number seems to be incomplete."+CR+CR+...
+      							"Do you still want to save the number entered?") THEN   
+      				RESULT True
+      			END
+      		END
+      	END
+      END
+      
+      RESULT False
+      
+     type : 458752
+   -
+     name : bCheckEmail
+     procedure_id : 1628364965421046795
+     type_code : 15
+     code : |1+
+      FUNCTION bCheckEmail(psEMail)
+      
+      SWITCH EmailCheckAddress(psEMail,emailValidateSyntaxStrict)
+      	CASE emailAddressError,emailAddressRefused,emailAddressIncorrectSyntax
+      		RESULT False
+      	CASE emailAddressValid
+      		RESULT True
+      	OTHER CASE
+      		RESULT False
+      END
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x3b4b00542d2dc8a2
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
+associated_test :
+ name : TEST_Global_procedures.wxt
